@@ -32,8 +32,12 @@
 
   double cacheRandom = drand48();
   NSString *formattedRandom = [NSString stringWithFormat:@"%.16f", cacheRandom];
-  NSString *stringToFormat = @"https://d8myem934l1zi.cloudfront.net/pixel.gif?account_token=%@&email=%@&url=%@&random=%@";
-  NSString *params = [NSString stringWithFormat:stringToFormat, apiClient.accountToken, apiClient.settings.endUserEmail, apiClient.settings.originURL, formattedRandom];
+  NSString *stringToFormat = @"https://d8myem934l1zi.cloudfront.net/pixel.gif?account_token=%@&url=%@&random=%@";
+  NSString *params = [NSString stringWithFormat:stringToFormat, apiClient.accountToken, apiClient.settings.originURL, formattedRandom];
+    
+  if (apiClient.settings.endUserEmail) {
+    params = [NSString stringWithFormat:@"%@&email=%@", params, apiClient.settings.endUserEmail];
+  }
 
   if (apiClient.settings.externalCreatedAt) {
     NSLog(@"WootricSDK: externalCreatedAt: %ld", (long)[apiClient.settings.externalCreatedAt intValue]);
