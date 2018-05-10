@@ -132,11 +132,6 @@
   BOOL needsUpdate = NO;
   NSString *escapedEmail = [self percentEscapeString:[_settings getEndUserEmailOrUnknown]];
   NSString *params = [NSString stringWithFormat:@"email=%@", escapedEmail];
-
-  if (_settings.productName) {
-    needsUpdate = YES;
-    params = [NSString stringWithFormat:@"%@&properties[product_name]=%@", params, [self percentEscapeString:_settings.productName]];
-  }
   
   if (_settings.externalId) {
     needsUpdate = YES;
